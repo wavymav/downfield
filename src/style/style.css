@@ -24,8 +24,78 @@ h2, h3, p, a, div {
   font-weight: normal;
 }
 
+/* LoadingSpinner */
+.m-loding-spinner {
+  position: absolute;
+  font-size: 0;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+  .m-loding-spinner__inner {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+  }
+    .m-loding-spinner__dot {
+      position: absolute;
+      display: block;
+      height: 15px;
+      width: 15px;
+      background: #7ad9af;
+      border-radius: 50%;
+      top: 0px;
+    }
+    .m-loding-spinner__dot:nth-child(1) {
+      left: -25px;
+      animation: bounce 1s ease-in-out infinite;
+    }
+
+    .m-loding-spinner__dot:nth-child(2) {
+      animation: bounce 1s ease-in 0.33s infinite
+    }
+
+    .m-loding-spinner__dot:nth-child(3) {
+      left: 25px;
+      animation: bounce 1s ease-in-out 0.66s infinite
+    }
+
+    @keyframes bounce {
+      0%, 75%, 100% {
+        transform: translateY(0px)
+      }
+      25% {
+        transform: translateY(-10px)
+      }
+    }
+
 /* PlayerList */
-.m-player-list {}
+.m-player-list {
+  display: block;
+}
+
+  .m-player-list__action {
+    display: block;
+    text-align: right;
+    padding: 20px 0;
+  }
+
+    .m-player-list__button {
+      display: inline-block;
+      cursor: pointer;
+      background-color: #7ad9af;
+      border-radius: 6px;
+      text-transform: uppercase;
+      color: #fff;
+      padding: 15px 20px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      transition: ease-in-out background-color 0.15s;
+    }
+    .m-player-list__button:hover {
+      background-color: #90e9c6;
+    }
 
 /* PlayerListItem */
 .m-player-list-item {
@@ -71,8 +141,6 @@ h2, h3, p, a, div {
       display: block;
       overflow: auto;
     }
-
-
 
       .m-player-list-item__buttons {
         display: block;

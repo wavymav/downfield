@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { PlayerListItem } from './PlayerListItem'
+import { LoadingSpinner } from '../LoadingSpinner'
 import { fetchPlayers } from '../../queries'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
@@ -11,24 +12,22 @@ const PlayerList = ({
     players
   }
 }) => {
-  const renderPlayerListItems = () => {
-    if (loading) {
-      return
-    }
-
-    return players.map(({ id, ...rest }) =>
+  const renderPlayerListItems = () => (
+    players.map(({ id, ...rest }) =>
       <PlayerListItem
         key={ id }
         { ...rest }
       />
     )
+  )
+
+  if (loading) {
+    return <LoadingSpinner />
   }
-
-
 
   return (
     <div className='m-player-list'>
-      <h2 className='m-page-title'>Players</h2>
+      <h2 className='m-page-title'>NFL Players</h2>
       <ReactCSSTransitionGroup
         transitionName='list-transition'
         transitionEnterTimeout={ 500 }
@@ -36,6 +35,11 @@ const PlayerList = ({
       >
         { renderPlayerListItems() }
       </ReactCSSTransitionGroup>
+      <div className='m-player-list__action'>
+        <div className='m-player-list__button'>
+          Create Player
+        </div>
+      </div>
     </div>
   )
 }
