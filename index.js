@@ -13,7 +13,7 @@ const app = express()
 
 app.use('/graphql', expressGraphQL({
   schema,
-  graphiql: true
+  graphiql: process.env.NODE_ENV === 'development'
 }))
 
 app.use(webpackMiddleware(webpack(webpackConfig)))
