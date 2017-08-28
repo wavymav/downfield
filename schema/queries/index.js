@@ -1,6 +1,5 @@
 require('dotenv').config()
 
-
 const axios = require('axios')
 const {
   GraphQLObjectType,
@@ -25,10 +24,10 @@ const query = new GraphQLObjectType({
     },
     player: {
       type: PlayerType,
-      args: { id: { type: GraphQLID } },
-      resolve: (parentValue, { id }) => (
+      args: { playerId: { type: GraphQLID } },
+      resolve: (parentValue, { playerId }) => (
         axios
-          .get(`${ ApiUrl }/players/${ id }`)
+          .get(`${ ApiUrl }/players/${ playerId }`)
           .then(({ data }) => data)
       )
     },

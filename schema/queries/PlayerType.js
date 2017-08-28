@@ -1,3 +1,6 @@
+require('dotenv').config()
+
+const axios = require('axios')
 const {
   GraphQLObjectType,
   GraphQLString,
@@ -5,7 +8,8 @@ const {
   GraphQLID,
   GraphQLList
 } = require('graphql')
-const { getPlayerComments } = require('../api')
+
+const ApiUrl = process.env.API_URL
 
 const PlayerType = new GraphQLObjectType({
   name: 'Player',
@@ -19,7 +23,9 @@ const PlayerType = new GraphQLObjectType({
     comments: {
       type: new GraphQLList(require('./CommentType')),
       resolve: ({ id }, args) => ( // eslint-disable-line no-unused-vars
-        getPlayerComments(id)
+        axios
+          .get(`${ ApiUrl }/players/${ id }/comments`)
+          .then(({ data }) => data)
       )
     }
   })
