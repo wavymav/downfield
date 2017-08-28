@@ -27,6 +27,15 @@ const PlayerType = new GraphQLObjectType({
           .get(`${ ApiUrl }/players/${ id }/comments`)
           .then(({ data }) => data)
       )
+    },
+    commentsCount: {
+      type: GraphQLInt,
+      resolve: ({ id }, args) => ( // eslint-disable-line no-unused-vars
+        axios
+          .get(`${ ApiUrl }/players/${ id }/comments/count`)
+          .then(({ data }) => data.count)
+          .then((count) => count)
+      )
     }
   })
 })
