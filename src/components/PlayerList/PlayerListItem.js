@@ -10,10 +10,12 @@ export const PlayerListItem = ({
   commentsCount
 }) => {
   const renderCommentsButton = () => {
-    if (commentsCount < 1) {
-      <div className='m-player-list-item__button  is-disabled'>
-        No Comments
-      </div>
+    if (!commentsCount) {
+      return (
+        <div className='m-player-list-item__button  is-disabled'>
+          No Comments
+        </div>
+      )
     }
 
     return (
@@ -22,7 +24,7 @@ export const PlayerListItem = ({
       </div>
     )
   }
-  
+
   return (
     <div className='m-player-list-item'>
       <div className='m-player-list-item__inner'>

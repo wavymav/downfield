@@ -97,6 +97,11 @@ h2, h3, p, a, div {
           background-color: #4a4a4a;
           color: #fff;
         }
+        .m-player-list-item__button.is-disabled {
+          cursor: not-allowed;
+          background-color: transparent;
+          color: #4a4a4a;
+        }
 
         .m-player-list-item__button_edit {
           margin-left: 10px;
