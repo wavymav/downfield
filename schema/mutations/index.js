@@ -9,8 +9,8 @@ const {
   GraphQLID,
   GraphQLNonNull
 } = graphql
-const PlayerType = require('./PlayerType')
-const CommentType = require('./CommentType')
+const PlayerType = require('../queries/PlayerType')
+const CommentType = require('../queries/CommentType')
 
 const ApiUrl = process.env.API_URL
 
@@ -90,7 +90,7 @@ const mutation = new GraphQLObjectType({
     },
     deletePlayer: {
       type: PlayerType,
-      args: { type: new GraphQLNonNull(GraphQLID) },
+      args: { id: { type: new GraphQLNonNull(GraphQLID) } },
       resolve: (parentValue, { id }) => (
         axios
           .delete(`${ ApiUrl }/players/${ id }`)
@@ -100,4 +100,6 @@ const mutation = new GraphQLObjectType({
   }
 });
 
-module.exports = mutation
+module.exports = {
+  mutation
+}
