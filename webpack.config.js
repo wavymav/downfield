@@ -2,7 +2,7 @@ const webpack = require('webpack'); // eslint-disable-line no-unused-vars
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './client/index.js',
+  entry: './src',
   output: {
     path: '/',
     filename: 'bundle.js'
@@ -28,7 +28,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'client/index.html'
+      template: 'src/index.html'
     })
   ]
 };
