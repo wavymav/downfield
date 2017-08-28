@@ -4,7 +4,8 @@ const axios = require('axios')
 const {
   GraphQLObjectType,
   GraphQLID,
-  GraphQLList
+  GraphQLList,
+  GraphQLNonNull
 } = require('graphql')
 const PlayerType = require('./PlayerType')
 const CommentType = require('./CommentType')
@@ -24,7 +25,7 @@ const query = new GraphQLObjectType({
     },
     player: {
       type: PlayerType,
-      args: { playerId: { type: GraphQLID } },
+      args: { playerId: { type: new GraphQLNonNull(GraphQLID) } },
       resolve: (parentValue, { playerId }) => (
         axios
           .get(`${ ApiUrl }/players/${ playerId }`)
@@ -33,7 +34,7 @@ const query = new GraphQLObjectType({
     },
     comment: {
       type: CommentType,
-      args: { id: { type: GraphQLID } },
+      args: { id: { type: new GraphQLNonNull(GraphQLID) } },
       resolve: (parentValue, { id }) => (
         axios
           .get(`${ ApiUrl }/comments/${ id }`)
