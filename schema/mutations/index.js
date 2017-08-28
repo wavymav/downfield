@@ -10,6 +10,7 @@ const {
   GraphQLNonNull
 } = graphql
 const PlayerType = require('./PlayerType')
+const CommentType = require('./CommentType')
 
 const ApiUrl = process.env.API_URL
 
@@ -39,6 +40,20 @@ const mutation = new GraphQLObjectType({
             jerseyNumber,
             position,
             team
+          })
+          .then(({ data }) => data)
+      )
+    },
+    createComment: {
+      type: CommentType,
+      args: {
+        content: { type: new GraphQLNonNull(GraphQLString) },
+        playerId: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      resolve: (parentValue, { playerId, content }) => (
+        axios
+          .post(`${ ApiUrl }/players/${ playerId }/comments`, {
+            content
           })
           .then(({ data }) => data)
       )
