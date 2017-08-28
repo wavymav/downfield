@@ -1,0 +1,135 @@
+/* APP */
+#app {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-color: #f6f7f8;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+
+/* Setup */
+h2, h3, p, a, div {
+  font-family: 'Lato', sans-serif;
+}
+
+/* Layout */
+.m-wrapper {
+  width: 900px;
+  margin: auto;
+}
+
+.m-page-title {
+  font-size: 40px;
+  font-weight: normal;
+}
+
+/* PlayerList */
+.m-player-list {}
+
+/* PlayerListItem */
+.m-player-list-item {
+  display: block;
+  background-color: #fff;
+  margin-bottom: 20px;
+  box-shadow: 0px 4px 15px rgba(0,0,0,.15);
+}
+.m-player-list-item:last-child {
+  margin-bottom: 0;
+}
+
+  .m-player-list-item__inner {
+    padding: 20px;
+  }
+
+    .m-player-list-item__section {
+      display: block;
+    }
+
+      .m-player-list-item__text {
+        display: inline-block;
+        margin: 0;
+        margin-left: 10px;
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #555;
+      }
+
+      .m-player-list-item__text_name {
+        font-weight: bold;
+        margin-left: 0;
+        color: #000;
+      }
+
+      .m-player-list-item__text_team {
+        font-weight: 900;
+        margin-left: 0;
+        color: #333;
+      }
+
+    .m-player-list-item__actions {
+      display: block;
+      overflow: auto;
+    }
+
+
+
+      .m-player-list-item__buttons {
+        display: block;
+        float: right;
+      }
+
+        .m-player-list-item__button {
+          display: inline-block;
+          cursor: pointer;
+          background-color: transparent;
+          border: 2px solid #4a4a4a;
+          border-radius: 6px;
+          text-transform: uppercase;
+          color: #4a4a4a;
+          padding: 5px 10px;
+          font-size: 10px;
+          font-weight: 800;
+          letter-spacing: 2px;
+          transition: ease-in-out color 0.15s, ease-in-out background-color 0.15s, ease-in-out border-color 0.15s;
+        }
+        .m-player-list-item__button:hover {
+          background-color: #4a4a4a;
+          color: #fff;
+        }
+
+        .m-player-list-item__button_edit {
+          margin-left: 10px;
+          background-color: #4a4a4a;
+          color: #fff;
+        }
+        .m-player-list-item__button_edit:hover {
+          background-color: #898989;
+          border-color: #898989;
+        }
+
+        .m-player-list-item__button_comment {
+          border-color: #f2677c;
+          color: #f2677c;
+        }
+        .m-player-list-item__button_comment:hover {
+          background-color: #f2677c;
+          color: #fff;
+        }
+
+/* React Transition Group */
+.list-transition-enter {
+  opacity: 0.01;
+}
+.list-transition-enter.list-transition-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.list-transition-leave {
+  opacity: 1;
+}
+.list-transition-leave.list-transition-leave-active{
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
