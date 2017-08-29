@@ -15,7 +15,7 @@ const CommentType = new GraphQLObjectType({
     id: { type: GraphQLID },
     content: { type: GraphQLString },
     playerId: { type: GraphQLID },
-    Player: {
+    player: {
       type: require('./PlayerType'),
       resolve: ({ playerId }, args) => ( // eslint-disable-line no-unused-vars
         axios
