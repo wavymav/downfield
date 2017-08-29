@@ -5,7 +5,8 @@ import ApolloClient from 'apollo-client'
 import { ApolloProvider } from 'react-apollo'
 import {
   App,
-  PlayerList
+  PlayerList,
+  PlayerInfo
 } from './components'
 
 import './style/style.css'
@@ -20,6 +21,7 @@ const Root = () => {
       <Router history={ hashHistory }>
         <Route path='/' component={ App }>
           <IndexRoute component={ PlayerList } />
+          <Route path='players/:id' component={ PlayerInfo } />
         </Route>
       </Router>
     </ApolloProvider>

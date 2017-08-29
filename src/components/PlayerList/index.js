@@ -16,6 +16,7 @@ const PlayerList = ({
     players.map(({ id, ...rest }) =>
       <PlayerListItem
         key={ id }
+        id={ id }
         { ...rest }
       />
     )
@@ -60,7 +61,4 @@ PlayerList.propTypes = {
   }).isRequired,
 }
 
-// export default graphql(deleteSong)(
-//   graphql(fetchPlayers)(SongList)
-// )
 export default graphql(fetchPlayers)(PlayerList)

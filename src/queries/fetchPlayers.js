@@ -9,5 +9,9 @@ export const fetchPlayers = gql`{
     position
     team
     commentsCount
+    comments {
+      id
+      playerId
+    }
   }
 }`
