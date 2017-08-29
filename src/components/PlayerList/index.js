@@ -37,7 +37,7 @@ const PlayerList = ({
         { renderPlayerListItems() }
       </ReactCSSTransitionGroup>
       <div className='m-player-list__action'>
-        <div className='m-player-list__button'>
+        <div className='m-player-list__button is-disabled'>
           Create Player
         </div>
       </div>
