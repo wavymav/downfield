@@ -4,6 +4,9 @@
   "description": "The Web App",
   "main": "index.js",
   "repository": "https://github.com/wavymav/downfield",
+  "engines": {
+    "node": "7.10.1"
+  },
   "scripts": {
     "start:dev": "nodemon index.js --ignore client"
   },
