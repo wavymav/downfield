@@ -96,7 +96,16 @@ const mutation = new GraphQLObjectType({
           .delete(`${ ApiUrl }/players/${ id }`)
           .then(({ data }) => data)
       )
-    }
+    },
+    deleteComment: {
+      type: CommentType,
+      args: { id: { type: new GraphQLNonNull(GraphQLID) } },
+      resolve: (parentValue, { id }) => (
+        axios
+          .delete(`${ ApiUrl }/comments/${ id }`)
+          .then(({ data }) => data)
+      )
+    },
   }
 });
 
