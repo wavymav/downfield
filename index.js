@@ -8,15 +8,18 @@ const webpack = require('webpack')
 const webpackConfig = require('./webpack.config.js')
 
 const port = process.env.PORT || 4000
+const isDevelopment = process.env.NODE_ENV !== "production"
 
 const app = express()
 
 app.use('/graphql', expressGraphQL({
   schema,
-  graphiql: process.env.NODE_ENV === 'development'
+  graphiql: isDevelopment
 }))
 
+
 app.use(webpackMiddleware(webpack(webpackConfig)))
+
 
 app.listen(port, (error) => {
   if (error) {
