@@ -5,30 +5,55 @@ import { Link } from 'react-router'
 import { LoadingSpinner } from '../LoadingSpinner'
 import PlayerCommentInput from './PlayerCommentInput'
 import { fetchPlayer } from '../../queries'
+import { deleteComment } from '../../mutations'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 
 export const PlayerInfo = ({
+  mutate,
   data: {
     loading,
     player
   }
 }) => {
+  const renderComments = () => {
+    if (!comments) {
+      return <p className='m-player-info__no-comments'>No Comments</p>
+    }
+
+    return (
+      comments.map(({ content, id }) => (
+        <div
+          key={ id }
+          className='m-player-info__comment-content'
+        >
+          <div className='m-player-info__comment-text'>
+            { content }
+            <div
+              onClick={ () => {
+                mutate({
+                  variables: { id },
+                  refetchQueries: [{
+                    query: fetchPlayer,
+                    variables: {
+                      playerId: player.id
+                    }
+                  }]
+                })
+              } }
+              className='m-player-list-item__button  m-player-list-item__button_comment  m-player-info__delete'
+            >
+              Delete
+            </div>
+          </div>
+        </div>
+      ))
+    )
+  }
+
   if (loading) {
     return <LoadingSpinner />
   }
-
-  const renderComments = () => (
-    comments.map(({ content, id}) => (
-      <div
-        key={ id }
-        className='m-player-info__comment-content'
-      >
-        <div className='m-player-info__comment-text'>
-          { content }
-        </div>
-      </div>
-    ))
-  )
 
   const {
     id,
@@ -61,7 +86,13 @@ export const PlayerInfo = ({
         </div>
       </div>
       <div className='m-player-info__comment'>
-        { renderComments() }
+        <ReactCSSTransitionGroup
+          transitionName='list-transition'
+          transitionEnterTimeout={ 500 }
+          transitionLeaveTimeout={ 300 }
+        >
+          { renderComments() }
+        </ReactCSSTransitionGroup>
       </div>
       <div className='m-player-info__input'>
         <PlayerCommentInput playerId={ id } />
@@ -70,17 +101,19 @@ export const PlayerInfo = ({
   )
 }
 
-const { shape, bool, object } = PropTypes
+const { func, shape, bool, object } = PropTypes
 PlayerInfo.propTypes = {
+  mutate: func,
   params: object,
   data: shape({
     loading: bool,
     player: object
   }).isRequired
 }
-
-export default graphql(fetchPlayer, {
-  options: (props) => ({
-    variables: { playerId: props.params.id }
-  })
-})(PlayerInfo)
+export default graphql(deleteComment)(
+  graphql(fetchPlayer, {
+    options: (props) => ({
+      variables: { playerId: props.params.id }
+    })
+  })(PlayerInfo)
+)
