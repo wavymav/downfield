@@ -9,9 +9,6 @@ const PlayerCommentInput = ({ mutate, playerId }) => {
 
   const _handleOnSubmit = (event) => {
     event.preventDefault()
-    if (input.value < 3) {
-      return
-    }
 
     mutate({
       variables: {
