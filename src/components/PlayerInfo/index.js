@@ -4,7 +4,7 @@ import { graphql } from 'react-apollo'
 import { Link } from 'react-router'
 import { LoadingSpinner } from '../LoadingSpinner'
 import PlayerCommentInput from './PlayerCommentInput'
-import { fetchPlayer } from '../../queries'
+import { fetchPlayer, fetchPlayers } from '../../queries'
 import { deleteComment } from '../../mutations'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
@@ -33,7 +33,10 @@ export const PlayerInfo = ({
               onClick={ () => {
                 mutate({
                   variables: { id },
-                  refetchQueries: [{
+                  refetchQueries: [
+                  {
+                      query: fetchPlayers
+                  }, {
                     query: fetchPlayer,
                     variables: {
                       playerId: player.id

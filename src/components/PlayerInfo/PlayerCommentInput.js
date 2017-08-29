@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { createComment } from '../../mutations'
-import { fetchPlayer } from '../../queries'
+import { fetchPlayer , fetchPlayers } from '../../queries'
 
 const PlayerCommentInput = ({ mutate, playerId }) => {
   let input
@@ -16,6 +16,8 @@ const PlayerCommentInput = ({ mutate, playerId }) => {
         playerId
       },
       refetchQueries: [{
+        query: fetchPlayers
+      }, {
         query: fetchPlayer,
         variables: {
           playerId
