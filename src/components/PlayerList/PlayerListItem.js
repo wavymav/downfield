@@ -44,9 +44,9 @@ export const PlayerListItem = ({
         <div className='m-player-list-item__actions'>
           { renderCommentsButton() }
           <div className='m-player-list-item__buttons'>
-            <div className='m-player-list-item__button'>
+            {/* <div className='m-player-list-item__button'>
               Edit
-            </div>
+            </div> */}
             <div className='m-player-list-item__button m-player-list-item__button_edit'>
               Delete
             </div>
